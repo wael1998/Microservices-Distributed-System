@@ -1,5 +1,6 @@
 package com.microcode.customer;
 
+import com.microcode.amqp.RabbitMQMessageProducer;
 import com.microcode.clients.fraud.FraudCheckResponse;
 import com.microcode.clients.fraud.FraudClient;
 import com.microcode.clients.notification.NotificationClient;
@@ -12,9 +13,11 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
-    private final NotificationClient notificationClient;
+    /* private final RestTemplate restTemplate;
+    private final NotificationClient notificationClient;*/
     private final FraudClient fraudClient;
+
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
     public void registerCustomer(CustomerRegistrationRequest request) {
 
         Customer customer = Customer.builder()
@@ -39,13 +42,17 @@ public class CustomerService {
         }
 
         //todo: send notification
-        notificationClient.sendNotification(
-                new NotificationRequest(
+        NotificationRequest notificationRequest = new NotificationRequest(
                 customer.getId(),
                 customer.getEmail(),
                 String.format("Hi %s, welcome to microcode...",
                         customer.getFirstName())
-                )
+
+        );
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
         );
     }
 }
