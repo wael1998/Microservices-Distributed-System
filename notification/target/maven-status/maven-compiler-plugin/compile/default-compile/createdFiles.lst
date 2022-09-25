@@ -1,0 +1,8 @@
+com\microcode\notification\NotificationApplication.class
+com\microcode\notification\NotificationService.class
+com\microcode\notification\Notification.class
+com\microcode\notification\NotificationConfig.class
+com\microcode\notification\Notification$NotificationBuilder.class
+com\microcode\notification\NotificationRepository.class
+com\microcode\notification\NotificationController.class
+com\microcode\notification\rabbitmq\NotificationConsumer.class
