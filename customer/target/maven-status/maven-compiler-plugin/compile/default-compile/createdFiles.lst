@@ -1,0 +1,8 @@
+com\microcode\customer\CustomerController.class
+com\microcode\customer\CustomerRegistrationRequest.class
+com\microcode\customer\CustomerRepository.class
+com\microcode\customer\Customer.class
+com\microcode\customer\CustomerConfig.class
+com\microcode\customer\Customer$CustomerBuilder.class
+com\microcode\customer\CustomerApplication.class
+com\microcode\customer\CustomerService.class

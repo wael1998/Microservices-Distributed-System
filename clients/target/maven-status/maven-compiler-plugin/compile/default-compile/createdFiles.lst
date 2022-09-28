@@ -1,0 +1,4 @@
+com\microcode\clients\fraud\FraudClient.class
+com\microcode\clients\notification\NotificationRequest.class
+com\microcode\clients\notification\NotificationClient.class
+com\microcode\clients\fraud\FraudCheckResponse.class
